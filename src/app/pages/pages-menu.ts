@@ -1,4 +1,6 @@
 import { NbMenuItem } from '@nebular/theme';
+import { Title } from '@angular/platform-browser';
+import { link } from 'fs';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
@@ -15,6 +17,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'FEATURES',
     group: true,
+  },
+  {
+    title: 'Administracion',
+    link: '/pages/administration',
+    icon: 'people-outline',
+    children: [
+      {
+        title: 'Usuarios',
+        link: '/pages/administration/users'
+      },
+    ]
   },
   {
     title: 'Layout',
