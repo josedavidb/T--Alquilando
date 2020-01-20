@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AdministrationRoutingModule, routedComponents } from './administration-routing.module';
 
@@ -18,10 +19,13 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
+
 //Services
 import { NbDialogService} from '@nebular/theme';
 import { UsersService } from './users/users.service';
 
+//Models 
+import { UsersModel } from './users/users.model';
 
 
 @NgModule({
@@ -41,8 +45,7 @@ import { UsersService } from './users/users.service';
       CommonModule,
       NbSpinnerModule,
       NbDialogModule,
-
-      
+      MDBBootstrapModule.forRoot(),
   ],
   declarations: [
     ...routedComponents,
@@ -50,7 +53,8 @@ import { UsersService } from './users/users.service';
   ],
   
   providers: [
-    UsersService
+    UsersService,
+    UsersModel,
   ],
 })
 export class AdministrationModule { }

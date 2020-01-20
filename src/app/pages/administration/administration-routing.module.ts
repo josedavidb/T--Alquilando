@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 //Component
 import {AdministrationComponent} from '../administration/administration.component';
 import {UsersComponent} from './users/users.component';
+import {UsersFormComponent} from './users-form/users-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,6 +13,10 @@ const routes: Routes = [{
     {
       path: 'users',
       component: UsersComponent,
+    },
+    {
+      path: 'users/form',
+      component: UsersFormComponent,
     }
   ],
 }];
@@ -25,4 +30,5 @@ export class AdministrationRoutingModule { }
 export const routedComponents = [
     AdministrationComponent,
     UsersComponent,
+    UsersFormComponent
 ];

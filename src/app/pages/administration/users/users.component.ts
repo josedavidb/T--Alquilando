@@ -8,6 +8,7 @@ import {Router, NavigationExtras } from'@angular/router';
 import { UsersService } from './users.service';
 import { UsersModel } from './users.model';
 import { Observable } from 'rxjs';
+import { User } from '../../../@core/data/users';
 @Component({
     selector: 'ngx-smart-table',
     templateUrl: './users.component.html',
@@ -59,8 +60,12 @@ export class UsersComponent {
   usersList:UsersModel[];
   tempUsersList:UsersModel[];
   total_pages:number;
+  user:UsersModel;
 
-  constructor(public usersService:UsersService){
+  //Variable to difference between create mode and edit mode
+  edit:boolean;
+
+  constructor(public usersService:UsersService, public router:Router){
     this.usersList = [];
     this.loadAllUsers();
   }
@@ -95,5 +100,31 @@ export class UsersComponent {
          }
       }
     });
+  }
+
+  createUsersForm(){
+    this.edit = false;
+    this.user = new UsersModel();
+    let navigationExtras:NavigationExtras = {
+      state:
+      {
+        user: this.user,
+        edit: this.edit,
+      } 
+    }
+    this.router.navigate(['pages/administration/users/form'],navigationExtras);
+    
+  }
+
+  editUsersForm(event){
+    this.edit = true;
+    this.user = new UsersModel();
+    Object.assign(this.user,event.data) //Instance all fields of user with the event data
+    let navigationExtras: NavigationExtras = {
+      state: { user : this.user, edit : this.edit  }
+    };
+    this.user.password = ""
+    this.user.confirm_password = ""
+    this.router.navigate(['pages/administration/users/form'], navigationExtras);
   }
 }
