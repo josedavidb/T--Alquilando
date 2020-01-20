@@ -1,76 +1,56 @@
-# ngx-admin [<img src="https://i.imgur.com/oMcxwZ0.png" alt="Eva Design System" height="20px" />](https://eva.design) [![Build Status](https://travis-ci.org/akveo/ngx-admin.svg?branch=master)](https://travis-ci.org/akveo/ngx-admin) [![Dependency Status](https://david-dm.org/akveo/ngx-admin/status.svg)](https://david-dm.org/akveo/ng2-admin)
+# Proyecto TP - Alquilando
 
-[Who uses ngx-admin?](https://github.com/akveo/ngx-admin/issues/1645)| [Documentation](https://akveo.github.io/ngx-admin/?utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes) | [Installation Guidelines](https://akveo.github.io/ngx-admin/docs/getting-started/what-is-ngxadmin?utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes)
+El objetivo de este TP es desarrollar las vistas de un simple ABM de usuarios conectado a una API externa.
 
-# Admin template based on Angular 8+ and <a href="https://github.com/akveo/nebular">Nebular</a>
-<a target="_blank" href="http://akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=main_pic"><img src="https://i.imgur.com/mFdqvgG.png"/></a>
+## Demo
+Se puede probar una demo en el siguiente enlace:
+https://tp-alquilando.herokuapp.com/
 
-### Backend Integration Bundles
-Easy way to integrate ngx-admin with backend (.NET, Node.js, Java etc.).
+## Instalación
 
-<a target="_blank" href="https://store.akveo.com/collections/all/?utm_source=github&utm_medium=ngx_admin_readme">
-  <img src="https://i.imgur.com/Ywbs8cl.png"/>
-</a>
+Para la instalación de este programa se necesita de los siguientes requerimientos:
 
-[Checkout our Store](https://store.akveo.com/collections/all/?utm_source=github&utm_medium=ngx_admin_readme) for ready to use Backend Bundles.
-
-### With 4 stunning visual themes
+ - NodeJs 11.4.0+
+ - NPM 6.4.1+
+ -  Angular 8+
 
 
+### Instalación de herramientas básicas
 
-#### Default
-<a target="_blank" href="http://akveo.com/ngx-admin/pages/dashboard?theme=default&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/Kn3xDKQ.png"/></a>
+Para instalar NodeJs (En distribuciones de Debian y Downstreams como Ubuntu):
 
-#### Dark
-<a target="_blank" href="http://akveo.com/ngx-admin/pages/dashboard?theme=dark&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/FAn5iXY.png"/></a>
+    $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    $ sudo apt-get install nodejs
+    
+  Se verifica la version de nodeJs y npm para verificar que se han instalado correctamente
 
-#### Cosmic
-<a target="_blank" href="http://akveo.com/ngx-admin/pages/dashboard?theme=cosmic&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/iJu2YDF.png"/></a>
+    $ node --version
+    $ npm --version
+    
+Ahora se procede a instalar Angular
 
-#### Corporate
-<a target="_blank" href="http://akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/GpUt6NW.png"/></a>
+    $ npm install -g @angular/cli
+    
+Finalmente, se procede a verificar que se instalo Angular correctamente
 
-### What's included:
+    $ ng --version
 
-- Angular 8+ & Typescript
-- Bootstrap 4+ & SCSS
-- Responsive layout
-- RTL support
-- High resolution
-- Flexibly configurable themes with **hot-reload** (3 themes included)
-- Authentication module with multiple providers
-- 40+ Angular Components
-- 60+ Usage Examples
+### Instalación y ejecución del programa
 
-### Demo
+Para correr el programa se debe instalar todas sus dependencias, entonces en la raíz del proyecto
 
-<a target="_blank" href="http://akveo.com/ngx-admin/">Live Demo</a>
+    $ npm install
 
-## Documentation
-This template is using [Nebular](https://github.com/akveo/nebular) modules set, [here you can find documentation and other useful articles](https://akveo.github.io/nebular/docs/guides/install-based-on-starter-kit).
+Luego, proceder a la ejecución
 
-### Empty starter kit
-Don't need all the pages and modules and just looking for an empty starter kit for your next project? Check out our [starter-kit branch](https://github.com/akveo/ngx-admin/tree/starter-kit).
+    $ ng serve
 
-## BrowserStack
-This project runs its tests on multiple desktop and mobile browsers using [BrowserStack](http://www.browserstack.com).
+# Créditos
 
-<img src="https://cloud.githubusercontent.com/assets/131406/22254249/534d889e-e254-11e6-8427-a759fb23b7bd.png" height="40" />
+ - Para este proyecto se utilizó como base el template gratuito
+   **ngx-admin**, el cual es un admin template basado en Angular 8+ y Nebular, desarrollado por **Akveo Team**.
+   https://github.com/akveo/ngx-admin/
+   
+ - Se usó reqres.in como simulación de una API externa.
+ - También se usaron otras liberías como Bootstrap, JQuery, Dropify, entre otras.
 
-## More from Akveo
-
-- [Eva Icons](https://github.com/akveo/eva-icons) - 480+ beautiful Open Source icons
-- [Nebular](https://github.com/akveo/nebular) - Angular Components, Auth and Security
-
-### How can I support developers?
-- Star our GitHub repo :star:
-- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
-- Follow us on [Twitter](https://twitter.com/akveo_inc) :feet:
-- Like our page on [Facebook](https://www.facebook.com/akveo/) :thumbsup:
-
-### Looking for engineering services? 
-Visit [our homepage](http://akveo.com/) or simply leave us a message to [contact@akveo.com](mailto:contact@akveo.com). We will be happy to work with you!
-
-### From Developers
-Made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get the latest news first!
-We're always happy to receive your feedback!
