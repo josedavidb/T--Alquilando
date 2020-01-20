@@ -8,3 +8,20 @@
     </ng2-smart-table>
   </nb-card-body>
   </nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Confirmación de eliminar usuario</nb-card-header>
+      <nb-card-body>¿Está seguro que desea eliminar el usuario {{ data }}?</nb-card-body>
+      <nb-card-footer>
+          <div class="row">
+            <div class="col-sm-6">
+                <button nbButton (click)="confirmDelete()">Confirmar</button>
+              </div>
+              <div class="col-sm-6">
+                <button nbButton (click)="ref.close()">Cancelar</button>
+              </div>
+          </div>
+      </nb-card-footer>
+    </nb-card>
+</ng-template>

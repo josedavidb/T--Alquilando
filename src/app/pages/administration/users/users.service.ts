@@ -18,11 +18,12 @@ export class UsersService extends BaseService{
     }
 
     updateUser(user:UsersModel){
-        return this.putBase(user,'users/');
+        return this.putBase(user,`users/${user.id}/`);
     }
 
     deleteUser(user:UsersModel){
-        return this.deleteBase(user,'users/');
+        console.log(user.id);
+        return this.deleteBase(user,`users/${user.id}/`);
     }
 
 }

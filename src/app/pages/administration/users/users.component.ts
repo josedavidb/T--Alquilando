@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 
 //Components
 import { LocalDataSource } from 'ng2-smart-table';
 import { NbDialogService } from '@nebular/theme';
 import {Router, NavigationExtras } from'@angular/router';
+import {NbToastrService,NbComponentStatus,NbGlobalLogicalPosition, NbGlobalPosition, NbGlobalPhysicalPosition} from '@nebular/theme';
+
 
 import { UsersService } from './users.service';
 import { UsersModel } from './users.model';
 import { Observable } from 'rxjs';
 import { User } from '../../../@core/data/users';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
     selector: 'ngx-smart-table',
     templateUrl: './users.component.html',
@@ -55,19 +58,42 @@ export class UsersComponent {
       
     },
   };
+  //Toastr configuration
+  position:NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+  status: NbComponentStatus = 'success'
+  duration = 4000;
+  destroyByClick = false;
+  hasIcon = true;
+  index = 1;
+  preventDuplicates = false;
 
   source: LocalDataSource = new LocalDataSource();
   usersList:UsersModel[];
   tempUsersList:UsersModel[];
   total_pages:number;
   user:UsersModel;
+  dialogRef : any;
+  current_navigation : any;
 
   //Variable to difference between create mode and edit mode
   edit:boolean;
 
-  constructor(public usersService:UsersService, public router:Router){
-    this.usersList = [];
-    this.loadAllUsers();
+  constructor(public usersService:UsersService, public router:Router,public dialogService: NbDialogService, public toastrService: NbToastrService
+){
+    if(this.router.getCurrentNavigation()){
+      this.current_navigation = this.router.getCurrentNavigation()
+      if(this.current_navigation.extras){
+        if (this.current_navigation.extras.state){
+          this.usersList = this.router.getCurrentNavigation().extras.state.usersList;
+        }
+      }
+    }
+    if (!this.usersList){
+      this.usersList = [];
+      this.loadAllUsers();
+    }else{
+      this.source.load(this.usersList);
+    }
   }
 
   loadUsersForPage(page):Observable<any>{
@@ -110,6 +136,7 @@ export class UsersComponent {
       {
         user: this.user,
         edit: this.edit,
+        usersList: this.usersList
       } 
     }
     this.router.navigate(['pages/administration/users/form'],navigationExtras);
@@ -121,10 +148,56 @@ export class UsersComponent {
     this.user = new UsersModel();
     Object.assign(this.user,event.data) //Instance all fields of user with the event data
     let navigationExtras: NavigationExtras = {
-      state: { user : this.user, edit : this.edit  }
+      state: {
+         user : this.user, 
+         edit : this.edit,
+         usersList : this.usersList  
+        }
     };
     this.user.password = ""
     this.user.confirm_password = ""
     this.router.navigate(['pages/administration/users/form'], navigationExtras);
   }
+
+    /*Function to open modal to confirmation for delete user*/
+    openModal(dialog: TemplateRef<any>,event) {
+      this.user = new UsersModel();
+      Object.assign(this.user,event.data) //Instance all fields of user with the event data
+      this.dialogRef = this.dialogService.open(
+        dialog,
+        { context: this.user.first_name });
+    }
+  
+    confirmDelete(dialog:TemplateRef<any>){
+      console.log(this.user.id);
+      this.usersList.forEach((user_l,index)=>{
+        if (user_l.id == this.user.id){
+          console.log(index)
+          this.usersList.splice(index,1);
+          this.source.load(this.usersList);
+          this.showToast('success','Se ha eliminado una usuario exitosamente','Se ha eliminado el usuario ' + this.user.first_name + ' de manera exitosa.')
+          this.dialogRef.close();
+
+        }
+      })
+    }
+  
+    private showToast(type: NbComponentStatus, title: string, body: string){
+      const config = {
+        status: type,
+        destroyByClick: this.destroyByClick,
+        duration: this.duration,
+        hasIcon: this.hasIcon,
+        position: this.position,
+        preventDuplicates: this.preventDuplicates,
+      };
+  
+      this.index += 1;
+      this.toastrService.show(
+        body,
+        title,
+        config);
+    }
+
+  
 }

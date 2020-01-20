@@ -5,7 +5,7 @@ declare var jQuery: any;
 import {UsersService} from '../users/users.service';
 //Models
 import {UsersModel } from '../users/users.model';
-import {Router} from '@angular/router'
+import {Router,NavigationExtras} from '@angular/router'
 import {NbToastrService,NbComponentStatus,NbGlobalLogicalPosition, NbGlobalPosition, NbGlobalPhysicalPosition} from '@nebular/theme';
 import { NgForm } from '@angular/forms';
 @Component({
@@ -17,6 +17,8 @@ export class UsersFormComponent {
 
   match : boolean = true;
   user: UsersModel = this.router.getCurrentNavigation().extras.state.user;
+  usersList: UsersModel[] = this.router.getCurrentNavigation().extras.state.usersList;
+
   edit : boolean = this.router.getCurrentNavigation().extras.state.edit;
 
   //Toastr configuration
@@ -57,7 +59,15 @@ export class UsersFormComponent {
           if (!data.error){
             console.log(data)
             this.showToast('success','Se ha creado una disciplina exitosamente','Se ha creado la disciplina ' + this.user.first_name + ' de manera exitosa.')
-            this.router.navigate(['/pages/administration/users']);
+            let last_id = this.usersList[this.usersList.length-1].id
+            this.user.id = last_id + 1;
+            this.usersList.push(this.user);
+            let navigationExtras: NavigationExtras = {
+              state: {
+                 usersList : this.usersList  
+                }
+            };
+            this.router.navigate(['/pages/administration/users'],navigationExtras);
 
           }else{
             this.showToast('danger','Hubo un error al crear el usuario',data.error.error)
@@ -82,7 +92,17 @@ export class UsersFormComponent {
                 if (data && !data.error){
                     console.log("Yay")
                     this.showToast('success','Se ha modificado una comisión exitosamente','Se ha modificado la comisión ' + this.user.first_name + ' de manera exitosa.')
-                    this.router.navigate(['/pages/administration/users']);
+                    this.usersList.forEach((user_l,index)=>{
+                      if (user_l.id == this.user.id){
+                        this.usersList[index] = this.user
+                      }
+                    })
+                    let navigationExtras: NavigationExtras = {
+                      state: {
+                         usersList : this.usersList  
+                        }
+                    };
+                    this.router.navigate(['/pages/administration/users'],navigationExtras);
                 }
                 else {
                     console.log(data.error)
