@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
 //Services
-import { NbDialogService} from '@nebular/theme'
+import { NbDialogService} from '@nebular/theme';
+import { UsersService } from './users/users.service';
 
 
 
@@ -49,6 +50,7 @@ import { NbDialogService} from '@nebular/theme'
   ],
   
   providers: [
+    UsersService
   ],
 })
 export class AdministrationModule { }

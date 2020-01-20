@@ -13,7 +13,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http'
 @Injectable()
 export class BaseService {
 
-    API_URL:string = "https://deportes-cp-api.herokuapp.com/api/"
+    API_URL:string = "https://reqres.in/api/"
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
