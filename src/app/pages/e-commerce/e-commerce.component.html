@@ -2,7 +2,15 @@
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
-        <ngx-profit-card></ngx-profit-card>
+              <nb-card>
+                  <nb-card-header>ABM de Usuarios</nb-card-header>
+                  <nb-card-body>
+                    Ir hacia la administración de usuarios.
+                    <p></p>
+                    <button nbButton (click)="goToUsers()">Usuarios</button>
+                  </nb-card-body>
+              </nb-card>
+          
       </div>
       <div class="col-md-6">
         <ngx-earning-card></ngx-earning-card>

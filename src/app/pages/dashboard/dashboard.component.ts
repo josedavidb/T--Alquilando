@@ -3,6 +3,9 @@ import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators' ;
 import { SolarData } from '../../@core/data/solar';
 
+import {Router,NavigationExtras} from '@angular/router'
+
+
 interface CardSettings {
   title: string;
   iconClass: string;
@@ -79,7 +82,8 @@ export class DashboardComponent implements OnDestroy {
   };
 
   constructor(private themeService: NbThemeService,
-              private solarService: SolarData) {
+              private solarService: SolarData,
+              public router:Router) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
@@ -93,7 +97,13 @@ export class DashboardComponent implements OnDestroy {
       });
   }
 
+  goToUsers(){
+    console.log('Aja')
+    this.router.navigate(['/pages/administration/users']);
+  }
+
   ngOnDestroy() {
     this.alive = false;
   }
+
 }
